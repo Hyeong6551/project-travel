@@ -1,0 +1,148 @@
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: #f8f9fa;
+}
+
+.container {
+    max-width: 1440px;
+    width: 100%;
+    margin: 50px auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    color: #212529;
+    margin-bottom: 30px;
+}
+
+.card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    background: #ffffff;
+    transition: transform 0.3s ease;
+}
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-body {
+    padding: 25px;
+}
+
+.card-title {
+    font-size: 1.65rem;
+    font-weight: 700;
+    color: #343a40;
+    margin-bottom: 20px;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.card-text {
+    font-size: 1.05rem;
+    color: #495057;
+    line-height: 1.6;
+}
+
+.h4 {
+    font-size: 1.3rem;
+    color: #ff3366;
+    font-weight: 600;
+    margin-top: 20px;
+}
+
+.date-field {
+    font-size: 1rem;
+    color: #666;
+    margin-top: 15px;
+    font-weight: 500;
+}
+
+.btn-primary {
+    background-color: #028267;
+    border-color: #028267;
+    padding: 10px 25px;
+    font-size: 1rem;
+    border-radius: 30px;
+    transition: background-color 0.3s ease;
+}
+.btn-primary:hover {
+    background-color: #026a56;
+    border-color: #026a56;
+}
+
+.fixed-img {
+    height: 400px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* 왼쪽 버튼 */
+.carousel-control-prev {
+    left: 0px;
+}
+
+/* 오른쪽 버튼 */
+.carousel-control-next {
+    right: 0px;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    width: 30px;
+    height: 30px;
+    background-size: 30px 30px;
+}
+
+/* 일정 요약 카드 스타일 */
+.schedule-summary {
+    background-color: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-top: 30px;
+    text-align: left;
+    line-height: 1.8;
+    color: #333;
+    font-size: 1rem;
+    white-space: pre-line; /* 줄바꿈 반영 */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.bold-day {
+    font-weight: 700;
+    margin-right: 6px;
+}
+.right-sidebar {
+    flex: 1;
+    min-width: 300px;
+}
+
+.booking-box {
+    position: sticky;
+    top: 100px; /* 상단 고정 거리 (헤더 아래) */
+    z-index: 100;
+}
+.red-text {
+    color: red;
+}

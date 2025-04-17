@@ -1,0 +1,9 @@
+rootProject.name = 'travelpackage-main'
+
+include 'gateway-service'
+include 'eureka-server'
+include 'user-service'
+include 'admin-service'
+include 'travel-product-service'
+include 'detail-page'
+include 'board-service'

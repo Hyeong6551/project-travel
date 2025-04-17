@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>게임 오버</title>
+</head>
+<body>
+<h1>💀 게임 오버!</h1>
+<p>당신의 점수: <span th:text="${score}">0</span></p>
+<form action="/game/ranking" method="post">
+  <input type="hidden" name="score" th:value="${score}">
+  닉네임: <input type="text" name="nickname" required>
+  <button type="submit">등록</button>
+</form>
+</body>
+</html>

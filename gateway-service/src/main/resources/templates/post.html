@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>게시글 목록</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .container {
+      margin-top: 80px;
+    }
+    .card {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="/">Mini Blog</a>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="/login">로그인</a></li>
+        <li class="nav-item"><a class="nav-link" href="/register">회원가입</a></li>
+        <li class="nav-item"><a class="nav-link" href="/">홈</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <h1 class="mb-4">게시글 목록</h1>
+
+  <div id="post-list" class="row">
+    <!-- 게시글 카드 표시 -->
+  </div>
+</div>
+<a class="nav-link" href="/create">글쓰기</a></li>
+<script>
+  fetch('/api/posts')
+          .then(response => response.json())
+          .then(data => {
+            const list = document.getElementById('post-list');
+
+            data.forEach(post => {
+              const col = document.createElement('div');
+              col.className = 'col-md-6';
+
+              const card = document.createElement('div');
+              card.className = 'card shadow-sm';
+
+              const cardBody = document.createElement('div');
+              cardBody.className = 'card-body';
+
+              const title = document.createElement('h5');
+              title.className = 'card-title';
+
+              // 🔥 상세보기 링크
+              const link = document.createElement('a');
+              link.href = `/view/${post.id}`;
+              link.textContent = post.title;
+              link.style.textDecoration = 'none';
+              link.style.color = '#000';
+
+              title.appendChild(link);
+
+              const content = document.createElement('p');
+              content.className = 'card-text';
+              content.textContent = post.content.length > 50
+                      ? post.content.substring(0, 50) + '...'
+                      : post.content;
+
+              const writer = document.createElement('p');
+              writer.className = 'text-muted';
+              writer.textContent = `작성자: ${post.username}`;
+
+              cardBody.appendChild(title);
+              cardBody.appendChild(content);
+              cardBody.appendChild(writer);
+              card.appendChild(cardBody);
+              col.appendChild(card);
+              list.appendChild(col);
+            });
+          });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

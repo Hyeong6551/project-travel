@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/admin-service/travelpackage-main.admin-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/admin-service/travelpackage-main.admin-service.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/board-service/travelpackage-main.board-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/board-service/travelpackage-main.board-service.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/detail-page/travelpackage-main.detail-page.main.iml" filepath="$PROJECT_DIR$/.idea/modules/detail-page/travelpackage-main.detail-page.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/eureka-server/travelpackage-main.eureka-server.main.iml" filepath="$PROJECT_DIR$/.idea/modules/eureka-server/travelpackage-main.eureka-server.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/gateway-service/travelpackage-main.gateway-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/gateway-service/travelpackage-main.gateway-service.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/travel-product-service/travelpackage-main.travel-product-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/travel-product-service/travelpackage-main.travel-product-service.main.iml" />
+    </modules>
+  </component>
+</project>

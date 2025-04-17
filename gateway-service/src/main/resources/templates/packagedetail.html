@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>패키지 상세보기</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<h1>여행 패키지 상세보기</h1>
+<div id="package-detail"></div>
+
+<script>
+  const packageId = [[${packageId}]];
+
+  $.ajax({
+    url: `http://localhost:8088/packages/${packageId}`, // travel-product-service API
+    method: 'GET',
+    success: function(data) {
+      $('#package-detail').html(`
+          <h2>${data.title}</h2>
+          <p>${data.description}</p>
+          <p>가격: ${data.price.toLocaleString()}원</p>
+          <p>기간: ${data.date}</p>
+          <img src="${data.imageUrl}" alt="${data.title}" style="max-width: 300px; display: block; margin-top: 10px;">
+        `);
+    },
+    error: function() {
+      $('#package-detail').html('<p>패키지 정보를 불러오지 못했습니다.</p>');
+    }
+  });
+</script>
+</body>
+</html>

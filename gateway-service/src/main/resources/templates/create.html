@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>게시글 작성</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .container {
+      margin-top: 80px;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="/">Mini Blog</a>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="/">홈</a></li>
+        <li class="nav-item"><a class="nav-link" href="/post">게시글 목록</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <h1 class="mb-4">게시글 작성</h1>
+
+  <form id="post-form">
+    <div class="mb-3">
+      <label for="title" class="form-label">제목</label>
+      <input type="text" class="form-control" id="title" required>
+    </div>
+    <div class="mb-3">
+      <label for="content" class="form-label">내용</label>
+      <textarea class="form-control" id="content" rows="5" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">작성하기</button>
+    <a href="/post" class="btn btn-secondary">취소</a>
+  </form>
+</div>
+
+<script>
+  document.getElementById('post-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const title = document.getElementById('title').value;
+    const content = document.getElementById('content').value;
+
+    fetch('/api/posts', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+        // 인증을 적용 중이면 Authorization 헤더 추가 필요
+      },
+      body: JSON.stringify({ title, content })
+    })
+            .then(response => {
+              if (response.ok) {
+                alert('게시글이 작성되었습니다!');
+                window.location.href = '/post';
+              } else {
+                alert('작성 실패!');
+              }
+            });
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

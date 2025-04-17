@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>랭킹</title>
+</head>
+<body>
+<h1>🏆 랭킹</h1>
+<table>
+    <tr>
+        <th>순위</th>
+        <th>닉네임</th>
+        <th>점수</th>
+    </tr>
+    <tr th:each="rank, stat : ${ranking}">
+        <td th:text="${stat.index + 1}"></td>
+        <td th:text="${rank.nickname}"></td>
+        <td th:text="${rank.score}"></td>
+    </tr>
+</table>
+<a href="/game/start">다시하기</a>
+</body>
+</html>

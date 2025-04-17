@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>여행 패키지 목록</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="/css/packagelist.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<!-- Hero Section -->
+<div class="hero-section text-center">
+  <div class="container">
+    <h1 class="display-4 mb-4">특별한 여행을 시작하세요</h1>
+    <p class="lead mb-4">전세계 아름다운 목적지로의 특별한 여행</p>
+
+    <!-- Search Section -->
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="search-section">
+          <div class="input-group">
+            <input type="text" id="searchKeyword" class="form-control" placeholder="여행지를 입력하세요 (예: 일본)">
+            <button class="btn btn-primary" id="searchBtn">
+              <i class="fas fa-search"></i> 검색
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="container mb-5">
+  <div class="row">
+    <!-- 좌측 필터 섹션 -->
+    <div class="col-md-3">
+      <div class="filter-section">
+        <div class="d-flex justify-content-between align-items-center">
+          <h5 class="filter-title mb-3">가격 범위</h5>
+          <a href="#" class="filter-reset" id="resetFilter">초기화</a>
+        </div>
+        <div class="price-inputs">
+          <input type="number" class="form-control price-input" id="minPrice" placeholder="최소 가격" min="0">
+          <span>~</span>
+          <input type="number" class="form-control price-input" id="maxPrice" placeholder="최대 가격">
+        </div>
+        <div class="price-range-text text-center" id="priceRangeText"></div>
+      </div>
+    </div>
+
+    <!--여행 기간 필터-->
+    <div class="filter-section mt-4">
+      <h5 class="filter-title mb-3">여행 기간</h5>
+      <div class="btn-group" role="group" id="durationButtons">
+        <button type="button" class="btn btn-outline-primary duration-btn" data-duration="1박 2일">1박 2일</button>
+        <button type="button" class="btn btn-outline-primary duration-btn" data-duration="2박 3일">2박 3일</button>
+        <button type="button" class="btn btn-outline-primary duration-btn" data-duration="3박 4일">3박 4일</button>
+      </div>
+    </div>
+    <!--여행 기간 필터-->
+
+    <!-- 우측 패키지 목록 -->
+    <div class="col-md-9">
+      <!-- Sort Buttons -->
+      <div class="text-center mb-4">
+        <div class="btn-group" role="group" id="sortButtons">
+          <button class="sort-btn active" data-sort="id,desc">최신순</button>
+          <button class="sort-btn" data-sort="id,asc">오래된순</button>
+          <button class="sort-btn" data-sort="price,asc">낮은 가격순</button>
+          <button class="sort-btn" data-sort="price,desc">높은 가격순</button>
+          <button class="sort-btn" data-sort="title,asc">가나다순</button>
+          <button class="sort-btn" data-sort="title,desc">reverse 가나다순</button>
+        </div>
+      </div>
+
+      <!-- Package List -->
+      <div class="row g-4" id="package-list">
+        <!-- 패키지 목록이 여기 동적으로 추가됨 -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/js/packagelist.js}"></script>
+</body>
+</html>
