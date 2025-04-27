@@ -1,68 +1,74 @@
-# 스프링부트 MSA 프로젝트
+# MSA 기반 여행 패키지 예약 플랫폼
 
 ## 프로젝트 소개
-이 프로젝트는 스프링부트 3.1.5를 기반으로 한 마이크로서비스 아키텍처(MSA) 예제입니다.
+MSA 아키텍처를 기반으로 여행 패키지 예약 서비스를 구축한 프로젝트입니다.
+사용자와 관리자가 모두 직관적이고 편리하게 사용할 수 있는 여행 플랫폼을 목표로 개발했습니다
+
+## 개발 기간
+- 3.31 ~ 4.11
 
 ## 기술 스택
-- Spring Boot 3.1.5
-- JDK 17
-- Gradle
-- Spring Cloud Gateway (WebFlux 기반)
-- Eureka Server
+### IDE
+- Intellij Ultimate
+### Frontend
+- Vue.js (Composition API)
+- Bootstrap 5
+- Axios
+- CSS
+- JavaScript
+### Backend
+- Spring Boot 3.1.5 (JDK 17)
+- MyBatis
 - H2 Database
-- JavaScript (Frontend)
-- JWT (JSON Web Token)
-- BCrypt (비밀번호 암호화)
-
-## 아키텍처 특징
-### Spring Cloud Gateway
-- Netty 기반의 비동기, 논블로킹(Non-blocking) 아키텍처
-- Project Reactor와 Spring WebFlux 기반
-- WebFlux를 사용하여 높은 동시성 처리
-- 적은 리소스로 많은 요청 처리 가능
-
-### WebFlux vs Web MVC
-- WebFlux: 비동기, 논블로킹 방식
-- Web MVC: 동기식, 서블릿 기반
-- Gateway 서비스는 WebFlux 사용 필수
+- Spring Cloud Gateway
+- Eureka
 
 ## 프로젝트 구조
 ```
-sb3_msa3/
+travelpackage-main/
+├── admin-service (포트: 8081)
+├── board-service (포트: 8007)
+├── detail-service (포트: 8004)
 ├── gateway-service (포트: 8000)
 ├── eureka-server (포트: 8761)
-├── product-service (포트: 8001)
-└── order-service (포트: 8002)
+└── travel-product-service (포트: 8003)
 ```
 
 ## 서비스 설명
-1. Gateway Service (8000)
-   - API Gateway 역할
-   - 프론트엔드 UI 제공
-   - 서비스 라우팅
-   - 인증/인가 처리 (JWT + Interceptor)
-   - 로그인 서비스 제공
-   - WebFlux 기반의 비동기 처리
+### 1. Admin Service (8081)
+- 회원 목록 조회, 수정, 삭제 기능 제공
+- 여행지(패키지) 등록, 수정, 삭제 기능 담당
+- 관리자 전용 API 제공으로 데이터 유지보수 지원
 
-2. Eureka Server (8761)
-   - 서비스 디스커버리
-   - 서비스 등록/관리
+### 2. Board Service (8007)
+- 공지사항 게시판 CRUD (생성, 조회, 수정, 삭제) 기능 제공
+- 사용자에게 주요 정보를 효과적으로 전달
 
-3. Product Service (8001)
-   - 상품 관리 서비스
-   - CRUD API 제공
+### 3. Detail Service (8004)
+- 여행 상품 상세 정보 제공
+- 예약 및 결제 기능 담당
+- 인원 수 증감 및 실시간 총 결제 금액 계산 기능 구현
 
-4. Order Service (8002)
-   - 주문 관리 서비스
-   - CRUD API 제공
+### 4. Gateway Service (8000)
+- API Gateway 역할 수행
+- 모든 외부 요청을 서비스별로 라우팅 처리
+- JWT 인증 및 인가 처리 (Interceptor 기반)
+- 프론트엔드 정적 리소스 제공
+
+### 5. Eureka Server (8761)
+- 각 마이크로서비스를 등록하고 관리하는 서비스 디스커버리 서버
+- 서비스 간 통신을 위한 위치 정보 제공
+- MSA 구조에서 동적 스케일링 및 장애 대응 지원
+
+### 6. Travel Product Service (8003)
+- 여행 상품 목록 조회, 검색, 정렬 기능 제공
+- 상품의 핵심 정보(이름, 지역, 가격 등) 리스트화하여 제공
+- RESTful 방식 API로 다른 서비스와 연동 용이
 
 ## 실행 방법
-1. 프로젝트 클론
-2. 각 서비스 디렉토리에서 다음 명령어 실행:
-   ```bash
-   ./gradlew bootRun
-   ```
-3. 브라우저에서 http://localhost:8000 접속
+1. 프로젝트를 클론
+2. 각 서비스에 대한 폴더로 들어가 @SpringBootApplication이 붙은 메인 클래스 (예: AdminServiceApplication.java)를 찾아 Run을 시킴
+3. frontend 폴더에 들어가 ``` npm install ``` 명령어를 실행한 뒤 ``` npm run dev ``` 명령어 입력
 
 ## 로그인 서비스
 ### 테스트 계정
@@ -74,31 +80,3 @@ sb3_msa3/
   - 비밀번호: user123
   - 사용자명: user2
   - 비밀번호: user123
-
-### 주요 기능
-- JWT 기반 인증
-- 인터셉터를 통한 인증 처리
-- BCrypt를 사용한 비밀번호 암호화
-- H2 데이터베이스 사용
-- 부트스트랩 기반의 모던한 UI
-- WebFlux 기반의 비동기 처리
-
-### API 엔드포인트
-- POST /api/auth/login - 로그인
-  - Request Body: { "username": "string", "password": "string" }
-  - Response: { "token": "string", "username": "string", "role": "string" }
-
-## API 엔드포인트
-### Product Service
-- GET /api/products - 상품 목록 조회
-- GET /api/products/{id} - 상품 상세 조회
-- POST /api/products - 상품 등록
-- PUT /api/products/{id} - 상품 수정
-- DELETE /api/products/{id} - 상품 삭제
-
-### Order Service
-- GET /api/orders - 주문 목록 조회
-- GET /api/orders/{id} - 주문 상세 조회
-- POST /api/orders - 주문 등록
-- PUT /api/orders/{id} - 주문 수정
-- DELETE /api/orders/{id} - 주문 삭제 
