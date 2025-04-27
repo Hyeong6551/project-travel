@@ -9,7 +9,7 @@
       <div class="content">
         <h2>회원정보 수정</h2>
 
-        <div class="edit-form">
+        <div class="edit-form w-50">
           <label>아이디</label>
           <input v-model="myInfo.id" type="text" disabled />
 
@@ -192,7 +192,9 @@ h2 {
   color: #008000;
   text-align: center;
 }
-
+.edit-form{
+    margin: 0 auto;
+}
 .edit-form label {
   display: block;
   margin-top: 15px;
