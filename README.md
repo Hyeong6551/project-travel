@@ -80,3 +80,6 @@ travelpackage-main/
   - 비밀번호: user123
   - 사용자명: user2
   - 비밀번호: user123
+ 
+ ## 시연동영상상
+https://youtu.be/kbE0Xgdu3rc
